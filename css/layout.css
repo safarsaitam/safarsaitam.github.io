@@ -1,0 +1,40 @@
+body {
+    background-color: black;
+    color: white;
+    position: relative;
+    min-height: 100vh;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div {
+    border: 5px solid red;
+}
+
+.huge {
+    font-size: 10em;
+}
+
+p {
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.animate-opacity {
+    animation:opac 3s
+} 
+
+@keyframes 
+opac {
+    from {
+        opacity: 0
+    } 
+    to{
+        opacity: 1
+    }
+}

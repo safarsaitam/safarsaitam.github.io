@@ -20,6 +20,12 @@ div {
     font-size: 10em;
 }
 
+@media (max-width: 600px) {
+    .huge {
+      font-size: 5em;
+    }
+  }
+
 p {
     margin: 0;
     font-family: 'Varela Round', sans-serif;

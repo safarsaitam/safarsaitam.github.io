@@ -20,11 +20,11 @@ div {
     font-size: 10em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .huge {
       font-size: 5em;
     }
-  }
+}
 
 p {
     margin: 0;

@@ -58,3 +58,10 @@ async function renderAllTexts() {
 }
 
 renderAllTexts();
+
+const closeButton = document.getElementById("close-contact-box");
+const contactBox = document.getElementById("contact-box");
+
+closeButton.addEventListener("click", () => {
+    contactBox.style.display = "none";
+});

@@ -1,6 +1,6 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: #0a0a0a;
+    color: #fafafa;
 }
 
 p {
@@ -9,4 +9,90 @@ p {
 
 h1, h3, p {
     font-family: 'Varela Round', sans-serif;
+}
+
+#contact-box {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: max-content;
+
+    padding: 16px;
+
+    border: 1px solid #fafafa;
+    background: #0a0a0a;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+#contact-box p {
+    margin-top: 0;
+}
+
+#contact-box input {
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#close-contact-box {
+    position: absolute;
+
+    top: 5px;
+    right: 8px;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    color: #fafafa;
+
+}
+
+#contact-box p,
+#contact-box button,
+#contact-box a {
+    white-space: nowrap;
+}
+
+#first-question {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+#the-inputs {
+    display: flex;
+    flex-direction: row;
+}
+
+#the-inputs input {
+    margin-right: 10px;
+}
+
+#the-inputs button {
+    height: fit-content;
+    background-color: #0a0a0a;
+    border-color: #0a0a0a;
+    color: #fafafa;
+}
+
+#the-inputs button:hover {
+    color: #0a0a0a;
+    background-color: #fafafa;
+    border-color: #fafafa;
+    cursor: pointer;
+}
+
+#contact-box a {
+    color: #fafafa;
+}
+
+#contact-box a:hover {
+    color: blue;
 }

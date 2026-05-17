@@ -96,3 +96,16 @@ h1, h3, p {
 #contact-box a:hover {
     color: blue;
 }
+
+.text-container {
+    text-align: justify;
+    text-indent: 2em;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.title-container {
+    max-width: 700px;
+    margin: 0 auto;
+}

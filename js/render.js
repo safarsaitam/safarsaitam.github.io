@@ -1,5 +1,9 @@
 const numberOfTexts = 5;
 
+const textContainer = document.createElement("div");
+textContainer.className = "text-container";
+document.body.appendChild(textContainer);
+
 async function renderText(path, isLastText) {
     const response = await fetch(path);
     const text = await response.text();
@@ -12,7 +16,7 @@ async function renderText(path, isLastText) {
         if (index === 0) {
             const h3 = document.createElement("h3");
             h3.textContent = line;
-            document.body.appendChild(h3);
+            textContainer.appendChild(h3);
             return;
         }
 
@@ -25,19 +29,19 @@ async function renderText(path, isLastText) {
                 return;
             }
 
-            document.body.appendChild(document.createElement("br"));
+            textContainer.appendChild(document.createElement("br"));
             return;
         }
 
         // Normal line becomes <p>
         const p = document.createElement("p");
         p.textContent = line;
-        document.body.appendChild(p);
+        textContainer.appendChild(p);
     });
 
     // Add <hr> except for the bottom text
     if (!isLastText) {
-        document.body.appendChild(document.createElement("hr"));
+        textContainer.appendChild(document.createElement("hr"));
     }
 }
 

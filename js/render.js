@@ -1,4 +1,4 @@
-const numberOfTexts = 4;
+const numberOfTexts = 5;
 
 async function renderText(path, isLastText) {
     const response = await fetch(path);

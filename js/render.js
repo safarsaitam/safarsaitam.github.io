@@ -1,5 +1,7 @@
 const numberOfTexts = 6;
 
+let currentLang = "pt"
+
 const textContainer = document.createElement("div");
 textContainer.className = "text-container";
 document.body.appendChild(textContainer);
@@ -46,22 +48,28 @@ async function renderText(path, isLastText) {
 }
 
 async function renderAllTexts() {
+    const res = await fetch(`texts/index.json`);
+    const data = await res.json();
 
-    // Reverse order:
-    // text-4 -> top
-    // text-1 -> bottom
-    for (let i = numberOfTexts; i >= 1; i--) {
+    const reversed = [...data[currentLang]].reverse();
 
-        const isLastText = i === 1;
+    for (const [i, index] of reversed.entries()) {
+        const isLastText = i === reversed.length - 1;
 
         await renderText(
-            `texts/text-${i}.txt`,
+            `texts/${currentLang}/text-${index}.txt`,
             isLastText
         );
     }
 }
 
 renderAllTexts();
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.querySelector(".text-container").innerHTML = "";
+    renderAllTexts();
+}
 
 const closeButton = document.getElementById("close-contact-box");
 const contactBox = document.getElementById("contact-box");

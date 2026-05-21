@@ -1,6 +1,6 @@
 const numberOfTexts = 6;
 
-let currentLang = "pt"
+let currentLang = ""
 
 const textContainer = document.createElement("div");
 textContainer.className = "text-container";
@@ -63,11 +63,23 @@ async function renderAllTexts() {
     }
 }
 
-renderAllTexts();
+setLanguage("pt");
+
+function updateLangUI() {
+    document.querySelectorAll(".lang-box p").forEach(el => {
+        el.classList.remove("active");
+    });
+
+    document
+        .querySelector(`.lang-box p[data-lang="${currentLang}"]`)
+        .classList.add("active");
+}
 
 function setLanguage(lang) {
+    if (lang === currentLang) return;
     currentLang = lang;
     document.querySelector(".text-container").innerHTML = "";
+    updateLangUI();
     renderAllTexts();
 }
 

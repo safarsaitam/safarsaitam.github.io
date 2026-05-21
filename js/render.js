@@ -1,4 +1,4 @@
-const numberOfTexts = 5;
+const numberOfTexts = 6;
 
 const textContainer = document.createElement("div");
 textContainer.className = "text-container";

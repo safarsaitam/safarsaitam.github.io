@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +16,14 @@
     </div>
     <div class="title-container">
         <h1>Dissonâncias</h1>
-        <h3>Pensamentos e desabafos contraditórios de alguém mais do que ninguém que só deseja o bem.</h3>
+        <h3 data-i18n="site-description">Pensamentos e desabafos contraditórios de alguém mais do que ninguém que só deseja o bem.</h3>
         <hr>
     </div>
     <div id="contact-box">
 
         <button id="close-contact-box">×</button>
 
-        <p id="first-question">
+        <p id="first-question" data-i18n="contact-question">
             Queres saber quando se deu a última dissonância?
         </p>
 
@@ -36,10 +36,11 @@
                     type="email"
                     name="email"
                     placeholder="Inserir e-mail"
+                    data-i18n-placeholder="email-placeholder"
                     required
                 >
 
-                <button type="submit">
+                <button type="submit" data-i18n="submit-button">
                     Enviar
                 </button>
             </div>
@@ -49,7 +50,7 @@
 
         <hr>
 
-        <p>
+        <p data-i18n="contact-invitation">
             Queres ser humano comigo?
         </p>
 
@@ -57,6 +58,19 @@
             dissonanciasdissonancias@gmail.com
         </a>
     </div>
+    <video controls playsinline preload="metadata">
+        <source
+            src="https://pub-fabb2090c4e94a9190b098a88eb43d8e.r2.dev/Koln.mp4"
+            type="video/mp4"
+        >
+        Your browser does not support HTML video.
+    </video>
+    <div class="video-description">
+        <p data-i18n="video-description">
+            Filmado em: "NS-DOK", Colónia; Mercado de Natal, Colónia.
+        </p>
+        <hr>
+    </div>
     <script src="js/render.js"></script>
-</body>
+    </body>
 </html>

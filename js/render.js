@@ -2,6 +2,74 @@ const numberOfTexts = 6;
 
 let currentLang = ""
 
+const translations = {
+    pt: {
+        "site-description":
+            "Pensamentos e desabafos contraditórios de alguém mais do que ninguém que só deseja o bem.",
+
+        "contact-question":
+            "Queres saber quando se deu a última dissonância?",
+
+        "email-placeholder":
+            "Inserir e-mail",
+
+        "submit-button":
+            "Enviar",
+
+        "contact-invitation":
+            "Queres ser humano comigo?",
+
+        "video-description":
+            "Filmado em: \"NS-DOK\", Colónia; Mercado de Natal, Colónia.",
+    },
+
+    en: {
+        "site-description":
+            "Contradictory thoughts and feelings from someone above no one who wishes but the good.",
+
+        "contact-question":
+            "Wish to be aware of the latest dissonance?",
+
+        "email-placeholder":
+            "Enter email",
+
+        "submit-button":
+            "Send",
+
+        "contact-invitation":
+            "Would you like to be human with me?",
+
+        "video-description":
+            "Filmed at: \"NS-DOK\", Cologne; Christmas Market, Cologne",
+    }
+};
+
+function updateStaticTranslations() {
+    const languageTranslations = translations[currentLang];
+
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+        const translationKey = element.dataset.i18n;
+        const translatedText = languageTranslations[translationKey];
+
+        if (translatedText !== undefined) {
+            element.textContent = translatedText;
+        }
+    });
+
+    document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach(element => {
+            const translationKey = element.dataset.i18nPlaceholder;
+            const translatedText = languageTranslations[translationKey];
+
+            if (translatedText !== undefined) {
+                element.placeholder = translatedText;
+            }
+        });
+
+    document.documentElement.lang = currentLang;
+}
+
 const textContainer = document.createElement("div");
 textContainer.className = "text-container";
 document.body.appendChild(textContainer);
@@ -80,6 +148,7 @@ function setLanguage(lang) {
     currentLang = lang;
     document.querySelector(".text-container").innerHTML = "";
     updateLangUI();
+    updateStaticTranslations();
     renderAllTexts();
 }
 

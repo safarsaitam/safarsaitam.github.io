@@ -1,4 +1,4 @@
-const numberOfTexts = 6;
+const numberOfTexts = 7;
 
 let currentLang = ""
 
@@ -43,6 +43,55 @@ const translations = {
             "Filmed at: \"NS-DOK\", Cologne; Christmas Market, Cologne",
     }
 };
+
+const mediaBaseUrl =
+    "https://pub-fabb2090c4e94a9190b098a88eb43d8e.r2.dev";
+
+function renderVideo(entry, isLastEntry) {
+    const videoSection = document.createElement("section");
+    videoSection.className = "video-entry";
+
+    const video = document.createElement("video");
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    const source = document.createElement("source");
+    source.src = `${mediaBaseUrl}/${encodeURIComponent(entry.file)}`;
+    source.type = "video/mp4";
+
+    video.appendChild(source);
+
+    const fallbackText = document.createTextNode(
+        currentLang === "en"
+            ? "Your browser does not support HTML video."
+            : "O teu navegador não suporta vídeo HTML."
+    );
+
+    video.appendChild(fallbackText);
+    videoSection.appendChild(video);
+
+    const description = document.createElement("p");
+    description.textContent = getVideoDescription(entry.id);
+    videoSection.appendChild(description);
+
+    textContainer.appendChild(videoSection);
+
+    if (!isLastEntry) {
+        textContainer.appendChild(document.createElement("hr"));
+    }
+}
+
+const videoDescriptions = {
+    koln: {
+        pt: "Filmado em: \"NS-DOK\", Colónia; Mercado de Natal, Colónia.",
+        en: "Filmed at: \"NS-DOK\", Cologne; Christmas Market, Cologne"
+    }
+};
+
+function getVideoDescription(videoId) {
+    return videoDescriptions[videoId]?.[currentLang] ?? "";
+}
 
 function updateStaticTranslations() {
     const languageTranslations = translations[currentLang];
@@ -116,18 +165,24 @@ async function renderText(path, isLastText) {
 }
 
 async function renderAllTexts() {
-    const res = await fetch(`texts/index.json`);
-    const data = await res.json();
+    const response = await fetch("texts/index.json");
+    const data = await response.json();
 
-    const reversed = [...data[currentLang]].reverse();
+    const entries = data[currentLang];
 
-    for (const [i, index] of reversed.entries()) {
-        const isLastText = i === reversed.length - 1;
+    for (const [index, entry] of entries.entries()) {
+        const isLastEntry = index === entries.length - 1;
 
-        await renderText(
-            `texts/${currentLang}/text-${index}.txt`,
-            isLastText
-        );
+        if (entry.type === "text") {
+            await renderText(
+                `texts/${currentLang}/text-${entry.id}.txt`,
+                isLastEntry
+            );
+        } else if (entry.type === "video") {
+            renderVideo(entry, isLastEntry);
+        } else {
+            console.warn("Unknown entry type:", entry);
+        }
     }
 }
 
